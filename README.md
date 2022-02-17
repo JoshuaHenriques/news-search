@@ -1,1 +1,1 @@
-# new-search-gui
+# news-search-gui
