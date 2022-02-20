@@ -25,7 +25,8 @@ all_articles = newsapi.get_everything(q='bitcoin',
 sources = newsapi.get_sources()
 '''
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
+from flask_cors import CORS, cross_origin
 import requests
 import os
 from dotenv import load_dotenv
@@ -42,6 +43,7 @@ api = NewsApiClient(api_key=API_KEY)
 app = Flask(__name__)
 
 @app.route('/search/', methods = ['GET'])
+@cross_origin()
 def search():
 	if(request.method == 'GET'):
 		args = request.args.to_dict()
@@ -62,15 +64,14 @@ def search():
 		logging.info(from_param)
 		logging.info(to)
 
-  
-		return api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=15, page=page)
+		articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=15, page=page)
+		return articles
 
 	# Specified from-date to the latest
 	elif 'from' in args:
 		from_param = args['from']
   
 		logging.info(from_param)
-
   
 		return api.get_everything(q=keywords, language='en', from_param=from_param, sort_by=sort_by, page_size=15, page=page)
 
@@ -79,11 +80,11 @@ def search():
 		to = args['to']
   
 		logging.info(to)
-
   
 		return api.get_everything(q=keywords, language='en', to=to, sort_by=sort_by, page_size=15, page=page)
 
-	return api.get_everything(q=keywords, language='en', sort_by=sort_by, page_size=15, page=page)
+	else:
+		return api.get_everything(q=keywords, language='en', sort_by=sort_by, page_size=15, page=page)
     
 if __name__ == '__main__':
     app.run(debug = True)
