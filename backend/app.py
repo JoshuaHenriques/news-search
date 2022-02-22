@@ -56,8 +56,6 @@ def search():
 		logging.info(sort_by)
 		logging.info(page)
   
-	# Specified from-date and to-date
-	if 'from' and 'to' in args:
 		from_param = args['from']
 		to = args['to']
   
@@ -65,26 +63,8 @@ def search():
 		logging.info(to)
 
 		articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=15, page=page)
-		return articles
-
-	# Specified from-date to the latest
-	elif 'from' in args:
-		from_param = args['from']
-  
-		logging.info(from_param)
-  
-		return api.get_everything(q=keywords, language='en', from_param=from_param, sort_by=sort_by, page_size=15, page=page)
-
-	# Specified to-date to the oldest (1 month old due to free plan)
-	elif 'to' in args:
-		to = args['to']
-  
-		logging.info(to)
-  
-		return api.get_everything(q=keywords, language='en', to=to, sort_by=sort_by, page_size=15, page=page)
-
-	else:
-		return api.get_everything(q=keywords, language='en', sort_by=sort_by, page_size=15, page=page)
+		# return articles
+		return jsonify(articles)
     
 if __name__ == '__main__':
     app.run(debug = True)
