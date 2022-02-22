@@ -26,7 +26,7 @@ sources = newsapi.get_sources()
 '''
 
 from flask import Flask, jsonify, request, Response
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 import requests
 import os
 from dotenv import load_dotenv
