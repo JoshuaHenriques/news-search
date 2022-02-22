@@ -13,36 +13,25 @@ export const App = () => {
   const [articles, setArticles] = useState([])
   const [queryy, setQuery] = useState<Query>( { keywords: '', fromDate: '', toDate: '', sort: '', page: 1 })
 
-  const setArticlesFunc = (articles: any) => {
-    setArticles(articles)
-  }
-
-  const setQueryFunc = (queryy: any) => {
-    setQuery(queryy)
-  }
-
   const onSearch = async (query: Query) => {
     setQuery(query)
     const res = await fetch(`http://127.0.0.1:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`)
     const data = await res.json()
-    setArticlesFunc(data.articles)
+    setArticles(data.articles)
   }
 
-  const onPageChange = async (updQuery: any) => {
-    console.log(`onPageChange() ${queryy.page}`)
-    const res = await fetch(`http://127.0.0.1:5000/search/?keywords=${updQuery.keywords}&from=${updQuery.fromDate}&to=${updQuery.toDate}&sort-by=${updQuery.sort}&page=${updQuery.page}`)
-    const data = await res.json()
-    setArticlesFunc(data.articles)
-  }
+  // const onPageChange = async (updQuery: any) => {
+  //   const res = await fetch(`http://127.0.0.1:5000/search/?keywords=${updQuery.keywords}&from=${updQuery.fromDate}&to=${updQuery.toDate}&sort-by=${updQuery.sort}&page=${updQuery.page}`)
+  //   const data = await res.json()
+  //   setArticles(data.articles)
+  // }
 
   const nextPage = () => {
-    const newPage = queryy.page + 1
-    console.log(`nextPage() ${newPage}`)
-    const updQuery = { ...queryy, page: newPage }
-    console.log(updQuery.page)
-    setQueryFunc(updQuery)
-    console.log(queryy.page)
-    onPageChange(updQuery)
+    // const newPage = queryy.page + 1
+    // const updQuery = { ...queryy, page: newPage }
+    onSearch({...queryy, page: queryy.page + 1})
+    // setQuery(updQuery)
+    // onPageChange(updQuery)
   }
 
   const prevPage = () => {
@@ -50,11 +39,11 @@ export const App = () => {
       alert("No previous page")
       return
     }
-    const newPage = queryy.page - 1
-    console.log(newPage)
-    const updQuery = {...queryy, page: newPage}
-    setQuery({ ...queryy, page: newPage})
-    onPageChange(updQuery)
+    // const newPage = queryy.page - 1
+    // const updQuery = {...queryy, page: newPage}
+    onSearch({...queryy, page: queryy.page - 1})
+    // setQuery({ ...queryy, page: newPage})
+    // onPageChange(updQuery)
   }
 
   return (
