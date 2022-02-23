@@ -25,9 +25,8 @@ all_articles = newsapi.get_everything(q='bitcoin',
 sources = newsapi.get_sources()
 '''
 
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request
 from flask_cors import cross_origin
-import requests
 import os
 from dotenv import load_dotenv
 from newsapi import NewsApiClient
@@ -51,18 +50,18 @@ def search():
 		sort_by = args['sort-by']
 		page = int(args['page'])
   
-		logging.info(keywords)
-		logging.info(args)
-		logging.info(sort_by)
-		logging.info(page)
+		# logging.info(keywords)
+		# logging.info(args)
+		# logging.info(sort_by)
+		# logging.info(page)
   
 		from_param = args['from']
 		to = args['to']
   
-		logging.info(from_param)
-		logging.info(to)
+		# logging.info(from_param)
+		# logging.info(to)
 
-		articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=15, page=page)
+		articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=5, page=page)
 		# return articles
 		return jsonify(articles)
     
