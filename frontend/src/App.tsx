@@ -19,10 +19,10 @@ export const App = () => {
 
   const onSearch = async (query: Query) => {
     setQuery(query);
-    // console.log(process.env.REACT_APP_FLASK_IP)
     // const res = await fetch(`http://127.0.0.1:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`)
     const res = await fetch(
-      `http://${process.env.REACT_APP_FLASK_IP}:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
+      // change to localhost ?
+      `http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
       { mode: 'cors',
       headers: {
         'Access-Control-Allow-Origin':'*'
