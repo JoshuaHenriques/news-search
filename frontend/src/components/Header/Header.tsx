@@ -1,9 +1,13 @@
+import "./Header.css";
+
 export const Header = () => {
-	return (
-	  <header id="header" className="p-5 bg-dark text-white text-center position-relative">
-		<div className="container">
-		  <h1>News Search</h1>
-		</div>
-	  </header>
-	);
-  };
+  return (
+    <section className="p-4 bg-dark text-white text-center header">
+      <div className="container">
+        <header>
+          <h1 className="header-text">News Search</h1>
+        </header>
+      </div>
+    </section>
+  );
+};
