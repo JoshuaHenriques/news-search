@@ -1,5 +1,5 @@
 FROM python:3.9-slim-buster
-WORKDIR /usr/src/app
+WORKDIR /app
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=production

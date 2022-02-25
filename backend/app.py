@@ -48,22 +48,18 @@ def search():
 		args = request.args.to_dict()
 		keywords = args['keywords']
 		sort_by = args['sort-by']
-		page = int(args['page'])
-  
-		# logging.info(keywords)
-		# logging.info(args)
-		# logging.info(sort_by)
-		# logging.info(page)
-  
+		page = int(args['page'])  
 		from_param = args['from']
 		to = args['to']
-  
-		# logging.info(from_param)
-		# logging.info(to)
-
 		articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=5, page=page)
-		# return articles
 		return jsonify(articles)
+
+@app.route('/top-headlines/', methods = ["GET"])
+@cross_origin()
+def top_headlines():
+    if(request.method == 'GET'):
+        top_headlines = api.get_top_headlines(page_size=5)
+        return jsonify(top_headlines)
     
 if __name__ == '__main__':
     app.run(debug = True)

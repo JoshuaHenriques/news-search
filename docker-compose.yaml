@@ -1,20 +1,15 @@
 version: '3.9'
 services:
   backend_serv:
-    container_name: backend_serv
     build: ./backend/
-    restart: always
     ports:
       - '8000:8000'
+    volumes:
+      - ./backend/:/app
   frontend:
     build: ./frontend/
-    restart: always
     ports:
-      - '3002:3000'
+      - '3000:3000'
     volumes:
       - ./frontend/:/app
       - /app/node_modules
-    links:
-      - backend_serv
-    depends_on:
-      - backend_serv

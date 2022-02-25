@@ -14,7 +14,7 @@ export const Article = ( { article }: { article: any }) => {
 			</div> */}
 
 			<div className="card my-5" >
-				<img src={article.urlToImage } className="card-img-top" alt="..."></img>
+				<img src={ article.urlToImage } className="card-img-top" alt=""></img>
 				<div className="card-body">
 					<h5 className="card-title">{ article.title }</h5>
 					<p className="card-text">{ article.content }</p>
