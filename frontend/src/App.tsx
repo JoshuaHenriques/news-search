@@ -54,7 +54,6 @@ export const App = () => {
       )
 
       const data = await res.json();
-      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
@@ -70,7 +69,6 @@ export const App = () => {
       )
 
       const data = await res.json();
-      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
@@ -86,7 +84,6 @@ export const App = () => {
       )
 
       const data = await res.json();
-      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
@@ -102,7 +99,6 @@ export const App = () => {
       )
 
       const data = await res.json();
-      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
