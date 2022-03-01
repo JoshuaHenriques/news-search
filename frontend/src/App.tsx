@@ -41,18 +41,71 @@ export const App = () => {
 
   const onSearch = async (query: Query) => {
     setQuery(query);
-    const res = await fetch(
-      `http://localhost:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
-      {
-        mode: "cors",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    );
-    const data = await res.json();
-    setPages(data.totalResults / 5);
-    setArticles(data.articles);
+
+    if (query.fromDate && query.toDate) {
+      const res = await fetch(
+        `http://localhost:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
+        {
+          mode: "cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+
+      const data = await res.json();
+      console.log(data)
+      setPages(data.totalResults / 5);
+      setArticles(data.articles);
+    }
+    else if (query.fromDate && !query.toDate) {
+      const res = await fetch(
+        `http://localhost:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&sort-by=${query.sort}&page=${query.page}`,
+        {
+          mode: "cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+
+      const data = await res.json();
+      console.log(data)
+      setPages(data.totalResults / 5);
+      setArticles(data.articles);
+    }
+    else if (!query.fromDate && query.toDate) {
+      const res = await fetch(
+        `http://localhost:5000/search/?keywords=${query.keywords}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
+        {
+          mode: "cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+
+      const data = await res.json();
+      console.log(data)
+      setPages(data.totalResults / 5);
+      setArticles(data.articles);
+    }
+    else if (!query.fromDate && !query.toDate) {
+      const res = await fetch(
+        `http://localhost:5000/search/?keywords=${query.keywords}&sort-by=${query.sort}&page=${query.page}`,
+        {
+          mode: "cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+
+      const data = await res.json();
+      console.log(data)
+      setPages(data.totalResults / 5);
+      setArticles(data.articles);
+    }
   };
 
   const nextPage = () => {

@@ -22,10 +22,26 @@ def search():
 		keywords = args['keywords']
 		sort_by = args['sort-by']
 		page = int(args['page'])  
-		from_param = args['from']
-		to = args['to']
-		articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=5, page=page)
-		return jsonify(articles)
+  
+		if 'from' in args and 'to' in args:
+			from_param = args['from']
+			to = args['to']
+			articles = api.get_everything(q=keywords, language='en', from_param=from_param, to=to, sort_by=sort_by, page_size=5, page=page)
+			return jsonify(articles)
+
+		elif 'from' in args and 'to' not in args:
+			from_param = args['from']
+			articles = api.get_everything(q=keywords, language='en', from_param=from_param, sort_by=sort_by, page_size=5, page=page)
+			return jsonify(articles)
+
+		elif 'to' in args and 'from' not in args:
+			to = args['to']
+			articles = api.get_everything(q=keywords, language='en', to=to, sort_by=sort_by, page_size=5, page=page)
+			return jsonify(articles)
+
+		elif 'from' not in args and 'to' not in args:
+			articles = api.get_everything(q=keywords, language='en', sort_by=sort_by, page_size=5, page=page)
+			return jsonify(articles)
 
 @app.route('/top-headlines/', methods = ["GET"])
 @cross_origin()

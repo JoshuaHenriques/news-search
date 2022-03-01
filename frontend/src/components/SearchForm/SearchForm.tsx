@@ -11,7 +11,7 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
   const onSubmit = (e: any) => {
     e.preventDefault();
 
-    if (!keywords || !fromDate || !toDate || !sort) {
+    if (!keywords || !sort) {
       alert("Please fill out form");
       return;
     }
