@@ -29,7 +29,7 @@ export const App = () => {
   }, []);
 
   const topHeadlines = async () => {
-    const res = await fetch(`http://localhost:5000/top-headlines/`, {
+    const res = await fetch(`http://localhost:8000/top-headlines/`, {
       mode: "cors",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -44,7 +44,7 @@ export const App = () => {
 
     if (query.fromDate && query.toDate) {
       const res = await fetch(
-        `http://localhost:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
+        `http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
         {
           mode: "cors",
           headers: {
@@ -59,7 +59,7 @@ export const App = () => {
     }
     else if (query.fromDate && !query.toDate) {
       const res = await fetch(
-        `http://localhost:5000/search/?keywords=${query.keywords}&from=${query.fromDate}&sort-by=${query.sort}&page=${query.page}`,
+        `http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&sort-by=${query.sort}&page=${query.page}`,
         {
           mode: "cors",
           headers: {
@@ -74,7 +74,7 @@ export const App = () => {
     }
     else if (!query.fromDate && query.toDate) {
       const res = await fetch(
-        `http://localhost:5000/search/?keywords=${query.keywords}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
+        `http://localhost:8000/search/?keywords=${query.keywords}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
         {
           mode: "cors",
           headers: {
@@ -89,7 +89,7 @@ export const App = () => {
     }
     else if (!query.fromDate && !query.toDate) {
       const res = await fetch(
-        `http://localhost:5000/search/?keywords=${query.keywords}&sort-by=${query.sort}&page=${query.page}`,
+        `http://localhost:8000/search/?keywords=${query.keywords}&sort-by=${query.sort}&page=${query.page}`,
         {
           mode: "cors",
           headers: {
