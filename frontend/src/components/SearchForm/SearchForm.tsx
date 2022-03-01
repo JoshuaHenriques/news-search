@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { SearchFormProps } from "../../interfaces/SearchFormProps"
 import "./SearchForm.css"
 
-export const SearchForm = ({ onSearch }: { onSearch: Function }) => {
+export const SearchForm = ({ onSearch }: SearchFormProps) => {
   const [keywords, setKeywords] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
@@ -16,11 +17,6 @@ export const SearchForm = ({ onSearch }: { onSearch: Function }) => {
     }
 
     onSearch({ keywords, fromDate, toDate, sort, page: 1 });
-
-    // setKeywords("");
-    // setFromDate("");
-    // setToDate("");
-    // setSort("");
   };
 
   return (
@@ -28,9 +24,6 @@ export const SearchForm = ({ onSearch }: { onSearch: Function }) => {
       <div className="form">
         <form className="" onSubmit={onSubmit}>
           <div className="row mb-3">
-            {/* <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
-              Search:
-            </label> */}
             <div className="col-sm">
               <input
                 type="text"
@@ -63,18 +56,6 @@ export const SearchForm = ({ onSearch }: { onSearch: Function }) => {
                     className="form-control"
                   ></input>
                 </div>
-                {/* <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
-              To:
-            </label>
-            <div className="col-sm">
-              <input
-                type="date"
-                placeholder="keywords"
-                value={toDate}
-                onChange={(e) => setToDate(e.target.value)}
-                className="form-control"
-              ></input>
-            </div> */}
               </div>
               <div className="row mb-3">
                 <label
@@ -143,51 +124,6 @@ export const SearchForm = ({ onSearch }: { onSearch: Function }) => {
               </fieldset>
             </div>
           </div>
-
-          {/* <fieldset className="row mb-3">
-            <legend className="col-form-label col-sm-2 pt-0">Sort By:</legend>
-            <div className="col-sm-10">
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="gridRadios1"
-                  value="publishedAt"
-                  name="sort"
-                  onChange={(e) => setSort(e.target.value)}
-                ></input>
-                <label className="form-check-label" htmlFor="gridRadios1">
-                  Published At
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="gridRadios2"
-                  value="relevancy"
-                  name="sort"
-                  onChange={(e) => setSort(e.target.value)}
-                ></input>
-                <label className="form-check-label" htmlFor="gridRadios2">
-                  Relevancy
-                </label>
-              </div>
-              <div className="form-check disabled">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  id="gridRadios3"
-                  value="popularity"
-                  name="sort"
-                  onChange={(e) => setSort(e.target.value)}
-                ></input>
-                <label className="form-check-label" htmlFor="gridRadios3">
-                  Popularity
-                </label>
-              </div>
-            </div>
-          </fieldset> */}
           <div className="text-center mt-4">
             <button type="submit" className="btn btn-primary btn-lg">
               Search

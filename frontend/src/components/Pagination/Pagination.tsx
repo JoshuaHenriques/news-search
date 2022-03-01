@@ -1,6 +1,6 @@
-import { Query } from "../../types/Query"
+import { PaginationProps } from "../../interfaces/PaginationProps"
 
-export const Pagination = ({ query, nextPage, prevPage }: { query:Query, nextPage: any, prevPage: any }) => {
+export const Pagination = ({ nextPage, prevPage }: PaginationProps) => {
 	return (
 		<section className="my-5">
 			<div className="container d-flex justify-content-between">

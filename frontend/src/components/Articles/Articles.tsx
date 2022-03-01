@@ -1,12 +1,14 @@
 import { Article } from "../Article/Article"
+import { ArticleType } from "../../interfaces/ArticleType";
+import { ArticlesProps } from "../../interfaces/ArticlesProps";
 import "./Articles.css"
 
-export const Articles = ( { articles }: { articles: any }) => {
+export const Articles = ( { articles }: ArticlesProps) => {
 	return (
-		<section className="">
+		<section>
 			<div className="container d-flex justify-content-center">
 				<div className="articles">
-				{ articles.map((article: any) => (<Article article={ article }/>)) }
+				{ articles.map((article: ArticleType) => (<Article article={ article }/>)) }
 				</div>
 			</div>
 		</section>

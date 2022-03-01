@@ -1,18 +1,8 @@
-import { Articles } from "../Articles/Articles"
+import { ArticleType } from "../../interfaces/ArticleType";
 
-export const Article = ( { article }: { article: any }) => {
+export const Article = ( { article }: { article: ArticleType }) => {
 	return (
-		<section className="">
-			{/* <div>
-				<h4>{ article.title }</h4>
-				<p> { article.description }</p>
-				<p> { article.content } </p>
-				<p> { article.author } </p>
-				<p> { article.publishedAt } </p>
-				<p> { article.source.name } </p>
-				<p> { article.url } </p>
-			</div> */}
-
+		<section>
 			<div className="card my-5" >
 				<img src={ article.urlToImage } className="card-img-top" alt=""></img>
 				<div className="card-body">
