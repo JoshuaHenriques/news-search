@@ -11,9 +11,21 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
   const onSubmit = (e: any) => {
     e.preventDefault();
 
-    if (!keywords || !sort) {
-      alert("Please fill out form");
+    if (!keywords) {
+      alert("Please enter keywords to search");
       return;
+    }
+
+    if (!sort) {
+      alert("Please select a sort method")
+      return
+    }
+
+    if (fromDate && toDate) {
+      if (fromDate > toDate) {
+        alert("Incorrect dates")
+        return
+      }
     }
 
     onSearch({ keywords, fromDate, toDate, sort, page: 1 });
@@ -34,7 +46,7 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
               ></input>
             </div>
             <div id="emailHelp" className="form-text text-center">
-              Will be searched through the Article's title,
+              Will be searched through the article's title,
               description, and content.
             </div>
           </div>

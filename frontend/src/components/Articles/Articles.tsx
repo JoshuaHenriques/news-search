@@ -8,7 +8,7 @@ export const Articles = ( { articles }: ArticlesProps) => {
 		<section>
 			<div className="container d-flex justify-content-center">
 				<div className="articles">
-				{ articles.map((article: ArticleType) => (<Article article={ article }/>)) }
+				{ articles.map((article: ArticleType) => (<Article key={article.content} article={ article }/>)) }
 				</div>
 			</div>
 		</section>

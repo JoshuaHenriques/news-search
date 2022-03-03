@@ -43,6 +43,7 @@ export const App = () => {
     setQuery(query);
 
     if (query.fromDate && query.toDate) {
+      console.log(`http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`)
       const res = await fetch(
         `http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
         {
@@ -54,10 +55,12 @@ export const App = () => {
       )
 
       const data = await res.json();
+      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
     else if (query.fromDate && !query.toDate) {
+      console.log(`http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&sort-by=${query.sort}&page=${query.page}`)
       const res = await fetch(
         `http://localhost:8000/search/?keywords=${query.keywords}&from=${query.fromDate}&sort-by=${query.sort}&page=${query.page}`,
         {
@@ -69,10 +72,12 @@ export const App = () => {
       )
 
       const data = await res.json();
+      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
     else if (!query.fromDate && query.toDate) {
+      console.log(`http://localhost:8000/search/?keywords=${query.keywords}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`)
       const res = await fetch(
         `http://localhost:8000/search/?keywords=${query.keywords}&to=${query.toDate}&sort-by=${query.sort}&page=${query.page}`,
         {
@@ -84,10 +89,12 @@ export const App = () => {
       )
 
       const data = await res.json();
+      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
     else if (!query.fromDate && !query.toDate) {
+      console.log(`http://localhost:8000/search/?keywords=${query.keywords}&sort-by=${query.sort}&page=${query.page}`)
       const res = await fetch(
         `http://localhost:8000/search/?keywords=${query.keywords}&sort-by=${query.sort}&page=${query.page}`,
         {
@@ -99,6 +106,7 @@ export const App = () => {
       )
 
       const data = await res.json();
+      console.log(data)
       setPages(data.totalResults / 5);
       setArticles(data.articles);
     }
@@ -110,7 +118,6 @@ export const App = () => {
       return;
     }
     onSearch({ ...queryy, page: queryy.page + 1 });
-    window.scrollTo(0, 0);
   };
 
   const prevPage = () => {
@@ -119,7 +126,6 @@ export const App = () => {
       return;
     }
     onSearch({ ...queryy, page: queryy.page - 1 });
-    window.scrollTo(0, 0);
   };
 
   return (
