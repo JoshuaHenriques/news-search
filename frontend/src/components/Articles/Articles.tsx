@@ -1,6 +1,6 @@
 import { Article } from "../Article/Article"
 import { ArticleType } from "../../interfaces/ArticleType";
-import { ArticlesProps } from "../../interfaces/ArticlesProps";
+import { ArticlesProps } from "./ArticlesProps";
 import "./Articles.css"
 
 export const Articles = ( { articles }: ArticlesProps) => {
