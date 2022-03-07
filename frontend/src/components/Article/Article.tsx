@@ -8,7 +8,7 @@ export const Article = ( { article }: { article: ArticleType }) => {
 				<div className="card-body">
 					<h5 className="card-title">{ article.title }</h5>
 					<p className="card-text">{ article.content }</p>
-					<a href={ article.url } className="btn btn-primary">Go to Article</a>
+					<a href={ article.url } target="_blank" className="btn btn-primary">Go to Article</a>
 				</div>
 			</div>
 		</section>

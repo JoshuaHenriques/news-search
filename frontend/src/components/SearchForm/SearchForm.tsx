@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SearchFormProps } from "../../interfaces/SearchFormProps"
+import { SearchFormProps } from "./SearchFormProps"
 import "./SearchForm.css"
 
 export const SearchForm = ({ onSearch }: SearchFormProps) => {

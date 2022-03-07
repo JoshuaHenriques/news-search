@@ -1,4 +1,4 @@
-import { PaginationProps } from "../../interfaces/PaginationProps"
+import { PaginationProps } from "./PaginationProps"
 
 export const Pagination = ({ nextPage, prevPage }: PaginationProps) => {
 	return (
